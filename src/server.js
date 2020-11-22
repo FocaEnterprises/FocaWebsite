@@ -1,8 +1,11 @@
 const express = require('express');
 const router = require('./router.js');
 const path = require('path');
+const config = require('../config.json');
+const bot = require('./bot/bot')
 
 const server = express();
+const client = new bot();
 
 server
   .use(express.static('public'))
@@ -15,4 +18,5 @@ server
 ;
 
 server.listen(80);
+client.start(config.token);
 console.log('FocaWebsite online!')
