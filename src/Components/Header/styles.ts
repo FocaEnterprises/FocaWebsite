@@ -42,7 +42,6 @@ export const NavItem = styled.a`
   margin: 0 20px;
 
   height: 100%;
-  min-height: 48px;
 
   color: ${({ theme, isSelected }: { theme: DefaultTheme, isSelected?: boolean }) => (
     isSelected ? theme.txt.primary : theme.txt.secondary)};
@@ -65,5 +64,9 @@ export const NavItem = styled.a`
 
   &:hover {
     opacity: ${({ isSelected }: { isSelected?: boolean }) => (isSelected ? 1 : 0.75)};
+  }
+
+  @media (max-width: 1000px) {
+    min-height: 48px;
   }
 `;

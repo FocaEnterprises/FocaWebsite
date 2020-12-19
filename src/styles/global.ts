@@ -31,13 +31,13 @@ const GlobalStyle = createGlobalStyle`
 
   @media (max-width: 1000px) {
     :root {
-      font-size: 85%;
+      font-size: 90%;
     }
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 768px) {
     :root {
-      font-size: 70%;
+      font-size: 80%;
     }
   }
 `;
