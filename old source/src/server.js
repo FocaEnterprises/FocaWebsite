@@ -1,7 +1,7 @@
 const express = require('express');
 const router = require('./router.js');
 const path = require('path');
-const config = require('../config.json');
+// const config = require('../config.json');
 const bot = require('./bot/bot')
 
 const server = express();
@@ -18,5 +18,5 @@ server
 ;
 
 server.listen(80);
-client.start(config.token);
+// client.start(config.token);
 console.log('FocaWebsite online!')

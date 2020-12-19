@@ -1,0 +1,29 @@
+{
+  "name": "focawebsite",
+  "version": "1.0.0",
+  "description": "Site oficial da Foca Enterprises",
+  "main": "server.js",
+  "scripts": {
+    "test": "node src/server.js",
+    "start": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foca-enterprises/FocaWebsite.git"
+  },
+  "keywords": [
+    "foca"
+  ],
+  "author": "Foca Enterprises",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/foca-enterprises/FocaWebsite/issues"
+  },
+  "homepage": "https://github.com/foca-enterprises/FocaWebsite#readme",
+  "dependencies": {
+    "discord.js": "^12.4.1",
+    "express": "^4.17.1",
+    "hbs": "^4.1.1",
+    "nodemon": "^2.0.6"
+  }
+}
