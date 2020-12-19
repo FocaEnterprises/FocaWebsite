@@ -13,6 +13,7 @@ export const Panel = styled.div`
   justify-content: space-between;
   
   width: 80%;
+  max-width: 1300px;
   margin: 25px auto;
   padding: 40px;
 
@@ -27,6 +28,20 @@ export const Panel = styled.div`
 
     max-width: 50%;
   }
+
+  @media (max-width: 1000px) {
+    width: 95vw;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    & > div {
+      min-width: 100%;
+      align-items: center;
+      text-align: center;
+    }
+  }
 `;
 
 export const PTitle = styled.h1`
@@ -39,6 +54,10 @@ export const PDescription = styled.p`
   margin-top: 20px;
 
   font-size: 1.3rem;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 `;
 
 export const PButton = styled.a`
@@ -68,5 +87,11 @@ export const PButton = styled.a`
 `;
 
 export const PImage = styled.img`
-  max-width: 40vw;
+  width: 40vw;
+  max-width: 650px;
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+    width: 100%;
+  }
 `;

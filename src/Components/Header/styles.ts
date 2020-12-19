@@ -5,12 +5,16 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 45px;
-  height: 74px;
+  min-height: 74px;
 
   background-color: ${({ theme }) => theme.bg.primary};
   box-shadow: 0 7px 6px 0 rgba( 33, 43, 54, .04);
 
   overflow: hidden;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
 `;
 
 export const Logo = styled.div`
@@ -38,6 +42,7 @@ export const NavItem = styled.a`
   margin: 0 20px;
 
   height: 100%;
+  min-height: 48px;
 
   color: ${({ theme, isSelected }: { theme: DefaultTheme, isSelected?: boolean }) => (
     isSelected ? theme.txt.primary : theme.txt.secondary)};

@@ -28,6 +28,18 @@ const GlobalStyle = createGlobalStyle`
   a:visited {
     text-decoration: none;
   }
+
+  @media (max-width: 1000px) {
+    :root {
+      font-size: 85%;
+    }
+  }
+
+  @media (max-width: 700px) {
+    :root {
+      font-size: 70%;
+    }
+  }
 `;
 
 export default GlobalStyle;
