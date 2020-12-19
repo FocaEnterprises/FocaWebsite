@@ -1,5 +1,5 @@
 import React from 'react';
-import { DiBrackets } from 'react-icons/di';
+import { DiCode } from 'react-icons/di';
 
 import {
   Container, Logo, Nav, NavItem,
@@ -12,7 +12,7 @@ interface IProps {
 const Header: React.FC<IProps> = ({ currentPage }) => (
   <Container>
     <Logo>
-      <DiBrackets size="2.5rem" />
+      <DiCode size="4rem" />
       <span>Dinastia Foca</span>
     </Logo>
 
