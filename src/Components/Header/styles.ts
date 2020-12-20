@@ -54,18 +54,30 @@ export const NavItem = styled.a`
 
   &::after {
     content: "";
-    display: ${({ isSelected }: { isSelected?: boolean }) => (isSelected ? 'block' : 'none')};
-    bottom: -5px;
-    left: calc(50% - 20px);
+    /* display: ${({ isSelected }: { isSelected?: boolean }) => (isSelected ? 'block' : 'none')}; */
+    display: block;
     position: absolute;
+    bottom: -5px;
+    left: calc(50% - 15px);
+
     height: 10px;
-    width: 40px;
+    width: ${({ isSelected }: { isSelected?: boolean }) => (isSelected ? '30px' : '0')};
+
     border-radius: 10px;
     background: ${({ theme }) => theme.app.secondary};
+
+    transition: all 0.2s;
   }
 
   &:hover {
     opacity: ${({ isSelected }: { isSelected?: boolean }) => (isSelected ? 1 : 0.75)};
+
+    &::after {
+      display: block;
+      left: calc(50% - 25px);
+
+      width: 50px;
+    }
   }
 
   @media (max-width: 1000px) {
