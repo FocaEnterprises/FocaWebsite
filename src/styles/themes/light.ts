@@ -9,8 +9,8 @@ const theme: DefaultTheme = {
   },
 
   txt: {
-    primary: '#0a0a0a',
-    secondary: '#6f7982',
+    primary: '#232a2f',
+    secondary: 'rgba(75,75,84,.81)',
     highLight: '#FFFFFF',
   },
 

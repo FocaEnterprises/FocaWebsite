@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "axios": "^0.21.0",
     "framer-motion": "^2.9.5",
     "next": "10.0.3",
     "polished": "^4.0.5",
