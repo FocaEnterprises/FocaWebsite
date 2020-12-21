@@ -76,14 +76,22 @@ const Projects: React.FC<IProps> = ({ projects }) => (
 );
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await axios.get<IResponse>(`${process.env.API_URL}/api/projects`);
+  try {
+    const { data } = await axios.get<IResponse>(`${process.env.API_URL}/api/projects`);
 
-  return {
-    props: {
-      projects: data.projects || [],
-    },
-    revalidate: 60,
-  };
+    return {
+      props: {
+        projects: data.projects || [],
+      },
+      revalidate: 60,
+    };
+  } catch (err) {
+    return {
+      props: {
+        projects: [],
+      },
+    };
+  }
 };
 
 export default Projects;
