@@ -76,6 +76,8 @@ const Projects: React.FC<IProps> = ({ projects }) => (
 );
 
 export const getStaticProps: GetStaticProps = async () => {
+  console.log(process.env.API_URL);
+
   try {
     const { data } = await axios.get<IResponse>(`${process.env.API_URL}/api/projects`);
 
