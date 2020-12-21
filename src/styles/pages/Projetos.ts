@@ -12,6 +12,10 @@ export const Panel = styled.div`
   align-items: center;
 
   margin: 25px 40px;
+  
+  @media (max-width: 768px) {
+    margin: 25px 20px;
+  }
 `;
 
 export const PTitle = styled.h1`
@@ -27,8 +31,20 @@ export const ProjectsList = styled.ul`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 25px;
-
+  
   margin-top: 30px;
+  
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+  }
 `;
 
 export const ProjectItem = styled.li`
