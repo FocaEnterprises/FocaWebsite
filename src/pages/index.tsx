@@ -7,6 +7,7 @@ import {
   Container, Panel, PButton, PDescription, PImage, PTitle,
 } from '../styles/pages/Index';
 import Header from '../Components/Header';
+import Footer from '../Components/Footer';
 
 const Index: React.FC = () => (
   <>
@@ -29,6 +30,8 @@ const Index: React.FC = () => (
 
         <PImage src="hey_illustration.svg" />
       </Panel>
+
+      <Footer />
     </Container>
   </>
 );

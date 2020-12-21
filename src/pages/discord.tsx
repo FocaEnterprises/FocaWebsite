@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
+
+import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 
 import { Container } from '../styles/pages/Discord';
@@ -12,6 +14,8 @@ const Projects: React.FC = () => (
 
     <Container>
       <Header currentPage="discord" />
+
+      <Footer />
     </Container>
   </>
 );

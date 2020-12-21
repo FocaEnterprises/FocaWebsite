@@ -17,6 +17,7 @@ import {
   ProjectTitle,
   PTitle,
 } from '../styles/pages/Projetos';
+import Footer from '../Components/Footer';
 
 interface IProps {
   projects: {
@@ -71,6 +72,8 @@ const Projects: React.FC<IProps> = ({ projects }) => (
           ))}
         </ProjectsList>
       </Panel>
+
+      <Footer />
     </Container>
   </>
 );
