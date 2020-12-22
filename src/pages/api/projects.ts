@@ -1,5 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
+import dbConnect from '../../utils/MongoDB';
+import Project from '../../models/Project';
+
 interface IProject {
   title: string;
   description: string;
@@ -22,13 +25,28 @@ const projects: IProject[] = [
   },
 ];
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method !== 'GET') {
-    res.status(404).json(null);
-    return;
-  }
+async function post(req: NextApiRequest, res: NextApiResponse) {
+  const results = await Project.find();
+  return res.send(results);
+}
 
-  res.status(200).json({
+async function get(req: NextApiRequest, res: NextApiResponse) {
+  return res.status(200).json({
     projects,
   });
+}
+
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  await dbConnect();
+
+  switch (req.method) {
+    case 'GET':
+      return get(req, res);
+
+    case 'POST':
+      return post(req, res);
+
+    default:
+      return res.status(404).send(null);
+  }
 };

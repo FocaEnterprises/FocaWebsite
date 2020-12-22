@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.21.0",
     "framer-motion": "^2.9.5",
+    "mongoose": "^5.11.8",
     "next": "10.0.3",
     "polished": "^4.0.5",
     "react": "17.0.1",
