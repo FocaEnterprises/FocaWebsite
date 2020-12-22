@@ -7,8 +7,8 @@ import Link from 'next/link';
 import {
   Container, Panel, PButton, PDescription, PImage, PTitle,
 } from '../styles/pages/Index';
-import Header from '../Components/Header';
-import Footer from '../Components/Footer';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const Index: React.FC = () => (
   <>
