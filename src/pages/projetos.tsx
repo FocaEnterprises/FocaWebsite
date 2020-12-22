@@ -1,9 +1,13 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import Head from 'next/head';
 import { GetStaticProps } from 'next';
-import axios from 'axios';
 
 import Header from '../components/Header';
+import Footer from '../components/Footer';
+import { IProject } from '../models/Project';
+import techs, { ITech } from '../utils/technologies';
+import api from '../services/Api';
 
 import {
   Container,
@@ -17,28 +21,13 @@ import {
   ProjectTitle,
   PTitle,
 } from '../styles/pages/Projetos';
-import Footer from '../components/Footer';
 
-interface IProps {
-  projects: {
-    title: string;
-    description: string;
-    tags: {
-      name: string;
-      color: string;
-    }[];
-  }[];
+interface IProjectSerielized extends IProject {
+  _tags: ITech[];
 }
 
-interface IResponse {
-  projects: {
-    title: string;
-    description: string;
-    tags: {
-      name: string;
-      color: string;
-    }[];
-  }[];
+interface IProps {
+  projects: IProjectSerielized[]
 }
 
 const Projects: React.FC<IProps> = ({ projects }) => (
@@ -55,17 +44,14 @@ const Projects: React.FC<IProps> = ({ projects }) => (
         <PDescription>Todos os projetos atuais</PDescription>
 
         <ProjectsList>
-          {projects.map((project, index) => (
-            // Ação temporaria pois ainda não temos ID
-            // eslint-disable-next-line react/no-array-index-key
-            <ProjectItem key={`${index}`}>
+          {projects.map((project) => (
+            <ProjectItem key={`${project._id}`}>
               <ProjectTitle>{project.title}</ProjectTitle>
               <ProjectDescription>{project.description}</ProjectDescription>
 
               <ProjectTags>
-                {project.tags.map((tag, tagIndex) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <ProjectTag key={`${tagIndex}`} color={tag.color}>{tag.name}</ProjectTag>
+                {project._tags.map((tag) => (
+                  <ProjectTag key={`${project._id}`.slice(0, 3)} color={tag.color}>{tag.name}</ProjectTag>
                 ))}
               </ProjectTags>
             </ProjectItem>
@@ -80,19 +66,33 @@ const Projects: React.FC<IProps> = ({ projects }) => (
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const { data } = await axios.get<IResponse>(`${process.env.API_URL}/api/projects`);
+    const { data } = await api.get<IProject[]>('/api/projects');
 
     return {
       props: {
-        projects: data.projects || [],
+        projects: data.map((project) => {
+          const _tags = [];
+
+          project.tags.split(', ').forEach((tag) => {
+            techs.forEach((tech) => {
+              if (tech.identifier === tag) _tags.push(tech);
+            });
+          });
+
+          return {
+            ...project,
+            _tags,
+          };
+        }) || [],
       },
-      revalidate: 60,
+      revalidate: 15,
     };
   } catch (err) {
     return {
       props: {
         projects: [],
       },
+      revalidate: 15,
     };
   }
 };

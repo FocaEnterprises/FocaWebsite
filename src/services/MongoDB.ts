@@ -37,7 +37,7 @@ const url = MONGODB_URI
   .replace('<password>', MONGODB_PASS)
   .replace('<dbname>', MONGODB_DB);
 
-const connection: { isConnected: number } = { isConnected: 0 }; /* creating connection object */
+const connection: { isConnected?: number } = {}; /* creating connection object */
 
 async function dbConnect() {
   /* check if we have connection to our databse */
@@ -46,12 +46,13 @@ async function dbConnect() {
   }
 
   /* connecting to our database */
-  const db = await await mongoose.connect(url, {
+  const db = await mongoose.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
   });
 
+  console.log('Connected to the database');
   connection.isConnected = db.connections[0].readyState;
 }
 

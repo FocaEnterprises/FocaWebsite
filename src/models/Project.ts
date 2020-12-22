@@ -1,10 +1,8 @@
-import mongoose from 'mongoose';
+import {
+  Schema, model, models, Document,
+} from 'mongoose';
 
-const ProjectsSchema = new mongoose.Schema({
-  id: {
-    type: mongoose.Types.ObjectId,
-    required: true,
-  },
+const ProjectsSchema: Schema = new Schema({
   title: {
     type: String,
     required: true,
@@ -13,13 +11,18 @@ const ProjectsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  tags: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Tags',
+  tags: {
+    type: String,
     require: false,
-  }],
+  },
 }, {
   timestamps: true,
 });
 
-export default mongoose.models.Projects || mongoose.model('Projects', ProjectsSchema);
+export interface IProject extends Document {
+  title: string;
+  description: string;
+  tags: string;
+}
+
+export default models.Projects || model<IProject>('Projects', ProjectsSchema);

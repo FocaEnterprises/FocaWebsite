@@ -1,39 +1,53 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import dbConnect from '../../utils/MongoDB';
-import Project from '../../models/Project';
+import dbConnect from '../../services/MongoDB';
+import Project, { IProject } from '../../models/Project';
+import techs from '../../utils/technologies';
 
-interface IProject {
+interface IProjectRequest {
   title: string;
   description: string;
   tags: {
     name: string;
     color: string;
+    identifier: string;
   }[];
 }
 
-const projects: IProject[] = [
-  {
-    title: 'FocaWebSite',
-    description: 'O site feito sob medida para a dinastia foca (SLA O QUE QUER DIZER!)',
-    tags: [
-      { name: 'Nodejs', color: '#00ca00' },
-      { name: 'React', color: '#5ce2ff' },
-      { name: 'Typescript', color: '#2b7489' },
-      { name: 'Next.js', color: '#111111' },
-    ],
-  },
-];
-
 async function post(req: NextApiRequest, res: NextApiResponse) {
-  const results = await Project.find();
-  return res.send(results);
+  const { title, description, tags } = req.body as IProjectRequest;
+
+  if (!title || title.length > 20 || title.length < 4) return res.status(400).json({ error: 'Invalid title' });
+
+  if (!description || description.length > 250 || description.length < 4) return res.status(400).json({ error: 'Invalid description' });
+
+  if (!tags) return res.status(400).json({ error: 'Invalid tags' });
+
+  if (typeof tags !== 'object') return res.status(400).json({ error: 'Invalid tags' });
+
+  try {
+    const tagList: string[] = [];
+
+    tags.forEach((tag) => {
+      if (!tag.identifier) throw new Error('Invalid tags formmat');
+
+      techs.forEach((tech) => {
+        if (tech.identifier === tag.identifier) tagList.push(tech.identifier);
+      });
+    });
+
+    return Project.create({ title, description, tags: tagList.join(', ') })
+      .then(() => res.status(201).json(null))
+      .catch(() => res.status(500).json(null));
+  } catch {
+    return res.status(400).json({ error: 'Invalid tags' });
+  }
 }
 
 async function get(req: NextApiRequest, res: NextApiResponse) {
-  return res.status(200).json({
-    projects,
-  });
+  const results: IProject[] = await Project.find();
+
+  return res.status(200).json(results);
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
