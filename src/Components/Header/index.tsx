@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { DiCode } from 'react-icons/di';
 
 import {
@@ -17,9 +18,15 @@ const Header: React.FC<IProps> = ({ currentPage }) => (
     </Logo>
 
     <Nav>
-      <NavItem isSelected={currentPage === 'index'} href="/">Início</NavItem>
-      <NavItem isSelected={currentPage === 'projects'} href="/projetos">Projetos</NavItem>
-      <NavItem isSelected={currentPage === 'discord'} href="/discord">Discord</NavItem>
+      <Link href="/" passHref>
+        <NavItem isSelected={currentPage === 'index'}>Início</NavItem>
+      </Link>
+      <Link href="/projetos" passHref>
+        <NavItem isSelected={currentPage === 'projects'}>Projetos</NavItem>
+      </Link>
+      <Link href="/discord" passHref>
+        <NavItem isSelected={currentPage === 'discord'}>Discord</NavItem>
+      </Link>
     </Nav>
   </Container>
 );

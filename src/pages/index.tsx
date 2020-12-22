@@ -2,6 +2,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { FiArrowRight } from 'react-icons/fi';
+import Link from 'next/link';
 
 import {
   Container, Panel, PButton, PDescription, PImage, PTitle,
@@ -22,10 +23,12 @@ const Index: React.FC = () => (
         <div>
           <PTitle>Dinastia Foca</PTitle>
           <PDescription>Venha se divertir fazendo o que gosta. Programe com a gente!</PDescription>
-          <PButton href="/projetos">
-            <FiArrowRight />
-            Projetos
-          </PButton>
+          <Link href="/projetos" passHref>
+            <PButton>
+              <FiArrowRight />
+              Projetos
+            </PButton>
+          </Link>
         </div>
 
         <PImage src="hey_illustration.svg" />
