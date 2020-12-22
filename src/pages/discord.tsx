@@ -2,8 +2,8 @@ import Head from 'next/head';
 import React from 'react';
 import { FiLogIn } from 'react-icons/fi';
 
-import Footer from '../components/Footer';
-import Header from '../components/Header';
+import Footer from '../tempComponents/Footer';
+import Header from '../tempComponents/Header';
 
 import {
   Container, Panel, Widtget, Title, Description, Button,

@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { GetStaticProps } from 'next';
 import axios from 'axios';
 
-import Header from '../components/Header';
+import Header from '../tempComponents/Header';
 
 import {
   Container,
@@ -17,7 +17,7 @@ import {
   ProjectTitle,
   PTitle,
 } from '../styles/pages/Projetos';
-import Footer from '../components/Footer';
+import Footer from '../tempComponents/Footer';
 
 interface IProps {
   projects: {
